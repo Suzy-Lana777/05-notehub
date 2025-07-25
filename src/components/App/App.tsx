@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useState } from 'react';
-import NoteList from '../NoteList/NoteList'; // доданий імпорт
 import css from '../App/App.module.css';
+import NoteList from '../NoteList/NoteList';
 // import SearchBox from '../SearchBox/SearchBox';
-// import Pagination from '../Pagination/Pagination';
+import Pagination from '../Pagination/Pagination';
 
 import { fetchNotes } from '../../services/noteService';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
@@ -36,8 +36,13 @@ export default function App() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        {/* <SearchBox />
-        <Pagination /> */}
+        {totalPages > 1 && (
+          <Pagination
+            totalNumberOfPages={totalPages}
+            currentActivePage={currentPage}
+            setPage={setCurrentPage}
+          />
+        )}
         <button className={css.button}>Create note +</button>
       </header>
 
