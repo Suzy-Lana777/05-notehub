@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Note, NoteTag } from '../types/note';
 
-axios.defaults.baseURL = 'https://notehub-public.goit.study/api/docs';
+axios.defaults.baseURL = 'https://notehub-public.goit.study/api';
 
 export interface FetchNotesResponse {
   notes: Note[];
@@ -14,10 +14,17 @@ export interface NewNote {
   tag: NoteTag;
 }
 
-export const fetchNotes = async (page: number, search: string) => {
+export const fetchNotes = async (
+  page: number,
+  search: string,
+  perPage: number = 12,
+) => {
   const myKey = import.meta.env.VITE_NOTEHUB_TOKEN;
 
-  const params: Record<string, string | number> = { page };
+  const params: Record<string, string | number> = {
+    page,
+    perPage,
+  };
 
   if (search.trim()) {
     params.search = search.trim();
@@ -27,6 +34,7 @@ export const fetchNotes = async (page: number, search: string) => {
     params,
     headers: { Authorization: `Bearer ${myKey}` },
   });
+
   return res.data;
 };
 

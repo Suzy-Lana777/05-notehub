@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useState } from 'react';
 import css from '../App/App.module.css';
 import NoteList from '../NoteList/NoteList';
