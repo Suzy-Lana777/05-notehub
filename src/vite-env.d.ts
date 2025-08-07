@@ -2,7 +2,7 @@
 
 declare module '*.module.css' {
   const classes: { [key: string]: string };
-  //   export default;
+  // export default
 }
 
 interface ImportMetaEnv {
